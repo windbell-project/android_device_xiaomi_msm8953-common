@@ -21,3 +21,5 @@ persist.cpuboost.profile           u:object_r:cpuboost_prop:s0
 # Spectrum
 persist.spectrum.profile                      u:object_r:spectrum_prop:s0
 
+# PowerHAL
+vendor.powerhal.state      u:object_r:power_prop:s0

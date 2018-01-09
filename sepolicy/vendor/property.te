@@ -12,3 +12,6 @@ system_public_prop(spectrum_prop)
 
 # Fingerprint
 system_public_prop(vendor_fp_prop)
+
+# Power HAL
+system_public_prop(power_prop)
