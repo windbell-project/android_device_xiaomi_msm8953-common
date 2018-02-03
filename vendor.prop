@@ -140,7 +140,6 @@ vendor.video.disable.ubwc=1
 ro.vendor.qti.sys.fw.bservice_enable=true
 
 # Perf
-ro.vendor.extension_library=libqti-perfd-client.so
 ro.vendor.perf.scroll_opt=true
 
 # Netflix
