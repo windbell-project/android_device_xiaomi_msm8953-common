@@ -64,10 +64,18 @@ if [ -s "$MY_DIR"/../$DEVICE/proprietary-files.txt ]; then
     extract "$MY_DIR"/../$DEVICE/proprietary-files.txt "$SRC" "$SECTION"
 fi
 
+DEVICE_BLOB_ROOT="$LINEAGE_ROOT"/vendor/"$VENDOR"/"$DEVICE"/proprietary
+
 if [ "$DEVICE" = "mido" ]; then
     # Hax for cam configs
     CAMERA2_SENSOR_MODULES="$LINEAGE_ROOT"/vendor/"$VENDOR"/"$DEVICE"/proprietary/vendor/lib/libmmcamera2_sensor_modules.so
     sed -i "s|/system/etc/camera/|/vendor/etc/camera/|g" "$CAMERA2_SENSOR_MODULES"
+fi
+
+if [ "$DEVICE" = "tiffany" ]; then
+    # Hax for cam configs
+    sed -i "s|/system/etc/camera/|/vendor/etc/camera/|g" $DEVICE_BLOB_ROOT/vendor/lib/libmmcamera2_sensor_modules.so
+
 fi
 
 "$MY_DIR"/setup-makefiles.sh
