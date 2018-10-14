@@ -64,10 +64,26 @@ if [ -s "$MY_DIR"/../$DEVICE/proprietary-files.txt ]; then
     extract "$MY_DIR"/../$DEVICE/proprietary-files.txt "$SRC" "$SECTION"
 fi
 
+COMMON_BLOB_ROOT="$LINEAGE_ROOT"/vendor/"$VENDOR"/"$DEVICE_COMMON"/proprietary
+DEVICE_BLOB_ROOT="$LINEAGE_ROOT"/vendor/"$VENDOR"/"$DEVICE"/proprietary
+
 if [ "$DEVICE" = "mido" ]; then
     # Hax for cam configs
     CAMERA2_SENSOR_MODULES="$LINEAGE_ROOT"/vendor/"$VENDOR"/"$DEVICE"/proprietary/vendor/lib/libmmcamera2_sensor_modules.so
     sed -i "s|/system/etc/camera/|/vendor/etc/camera/|g" "$CAMERA2_SENSOR_MODULES"
+fi
+
+if [ "$DEVICE" = "tiffany" ]; then
+#
+# Load camera configs from vendor
+#
+sed -i "s|/system/etc/camera/|/vendor/etc/camera/|g" $DEVICE_BLOB_ROOT/vendor/lib/libmmcamera2_sensor_modules.so
+sed -i "s|/system/etc/|/vendor/etc/|g" $DEVICE_BLOB_ROOT/vendor/lib/libmorphohht4.0.so
+
+#
+# Load camera watermark from vendor
+#
+sed -i "s|system/etc/dualcamera.png|vendor/etc/dualcamera.png|g" $DEVICE_BLOB_ROOT/vendor/lib/libMiCameraHal.so
 fi
 
 "$MY_DIR"/setup-makefiles.sh
