@@ -45,6 +45,7 @@ public class DozeSettingsFragment extends PreferenceFragment implements OnPrefer
         CompoundButton.OnCheckedChangeListener {
 
     private TextView mTextView;
+    private View mSwitchBar;
 
     private SwitchPreference mPickUpPreference;
     private SwitchPreference mHandwavePreference;
@@ -101,36 +102,31 @@ public class DozeSettingsFragment extends PreferenceFragment implements OnPrefer
         mTextView.setText(getString(dozeEnabled ?
                 R.string.switch_bar_on : R.string.switch_bar_off));
 
-        View switchBar = view.findViewById(R.id.switch_bar);
-        Switch switchWidget = switchBar.findViewById(android.R.id.switch_widget);
+        mSwitchBar = view.findViewById(R.id.switch_bar);
+        Switch switchWidget = mSwitchBar.findViewById(android.R.id.switch_widget);
         switchWidget.setChecked(dozeEnabled);
         switchWidget.setOnCheckedChangeListener(this);
-        switchBar.setOnClickListener(v -> switchWidget.setChecked(!switchWidget.isChecked()));
+        mSwitchBar.setActivated(dozeEnabled);
+        mSwitchBar.setOnClickListener(v -> {
+            switchWidget.setChecked(!switchWidget.isChecked());
+            mSwitchBar.setActivated(switchWidget.isChecked());
+        });
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-<<<<<<< HEAD:doze/src/org/lineageos/settings/doze/DozeSettingsFragment.java
-        Utils.checkDozeService(getActivity());
-=======
         DozeUtils.enableGesture(getActivity(), preference.getKey(), (Boolean) newValue);
         DozeUtils.checkDozeService(getActivity());
->>>>>>> d5c496f... msm8953-common: Convert XiaomiDoze into XiaomiParts:parts/src/org/lineageos/settings/doze/DozeSettingsFragment.java
         return true;
     }
 
     @Override
-<<<<<<< HEAD:doze/src/org/lineageos/settings/doze/DozeSettingsFragment.java
-    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-        Utils.enableDoze(b, getActivity());
-        Utils.checkDozeService(getActivity());
-=======
     public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
         DozeUtils.enableDoze(getActivity(), isChecked);
         DozeUtils.checkDozeService(getActivity());
->>>>>>> d5c496f... msm8953-common: Convert XiaomiDoze into XiaomiParts:parts/src/org/lineageos/settings/doze/DozeSettingsFragment.java
 
-        mTextView.setText(getString(b ? R.string.switch_bar_on : R.string.switch_bar_off));
+        mTextView.setText(getString(isChecked ? R.string.switch_bar_on : R.string.switch_bar_off));
+        mSwitchBar.setActivated(isChecked);
 
         mPickUpPreference.setEnabled(b);
         mHandwavePreference.setEnabled(b);
