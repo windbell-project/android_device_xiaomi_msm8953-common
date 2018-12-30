@@ -38,7 +38,8 @@ public class DozeService extends Service {
         mProximitySensor = new ProximitySensor(this);
         mTiltSensor = new TiltSensor(this);
 
-        IntentFilter screenStateFilter = new IntentFilter(Intent.ACTION_SCREEN_ON);
+	IntentFilter screenStateFilter = new IntentFilter();
+        screenStateFilter.addAction(Intent.ACTION_SCREEN_ON);
         screenStateFilter.addAction(Intent.ACTION_SCREEN_OFF);
         registerReceiver(mScreenStateReceiver, screenStateFilter);
     }
@@ -65,22 +66,38 @@ public class DozeService extends Service {
 
     private void onDisplayOn() {
         if (DEBUG) Log.d(TAG, "Display on");
+<<<<<<< HEAD:doze/src/org/lineageos/settings/doze/DozeService.java
         if (Utils.pickUpEnabled(this)) {
             mTiltSensor.disable();
         }
         if (Utils.handwaveGestureEnabled(this) ||
                 Utils.pocketGestureEnabled(this)) {
+=======
+        if (DozeUtils.isPickUpEnabled(this)) {
+            mPickupSensor.disable();
+        }
+        if (DozeUtils.isHandwaveGestureEnabled(this) ||
+                DozeUtils.isPocketGestureEnabled(this)) {
+>>>>>>> d5c496f... msm8953-common: Convert XiaomiDoze into XiaomiParts:parts/src/org/lineageos/settings/doze/DozeService.java
             mProximitySensor.disable();
         }
     }
 
     private void onDisplayOff() {
         if (DEBUG) Log.d(TAG, "Display off");
+<<<<<<< HEAD:doze/src/org/lineageos/settings/doze/DozeService.java
         if (Utils.pickUpEnabled(this)) {
             mTiltSensor.enable();
         }
         if (Utils.handwaveGestureEnabled(this) ||
                 Utils.pocketGestureEnabled(this)) {
+=======
+        if (DozeUtils.isPickUpEnabled(this)) {
+            mPickupSensor.enable();
+        }
+        if (DozeUtils.isHandwaveGestureEnabled(this) ||
+                DozeUtils.isPocketGestureEnabled(this)) {
+>>>>>>> d5c496f... msm8953-common: Convert XiaomiDoze into XiaomiParts:parts/src/org/lineageos/settings/doze/DozeService.java
             mProximitySensor.enable();
         }
     }

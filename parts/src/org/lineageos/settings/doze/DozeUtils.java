@@ -27,7 +27,7 @@ import android.util.Log;
 
 import static android.provider.Settings.Secure.DOZE_ENABLED;
 
-public final class Utils {
+public final class DozeUtils {
 
     private static final String TAG = "DozeUtils";
     private static final boolean DEBUG = false;
@@ -40,7 +40,7 @@ public final class Utils {
     protected static final String GESTURE_HAND_WAVE_KEY = "gesture_hand_wave";
     protected static final String GESTURE_POCKET_KEY = "gesture_pocket";
 
-    protected static void startService(Context context) {
+    public static void startService(Context context) {
         if (DEBUG) Log.d(TAG, "Starting service");
         context.startServiceAsUser(new Intent(context, DozeService.class),
                 UserHandle.CURRENT);
@@ -71,7 +71,12 @@ public final class Utils {
         }
     }
 
-    protected static boolean isDozeEnabled(Context context) {
+    protected static boolean enableDoze(Context context, boolean enable) {
+        return Settings.Secure.putInt(context.getContentResolver(),
+                DOZE_ENABLED, enable ? 1 : 0);
+    }
+
+    public static boolean isDozeEnabled(Context context) {
         return Settings.Secure.getInt(context.getContentResolver(),
                 DOZE_ENABLED, 1) != 0;
     }
@@ -102,8 +107,23 @@ public final class Utils {
                 .getBoolean(GESTURE_POCKET_KEY, false);
     }
 
+<<<<<<< HEAD:doze/src/org/lineageos/settings/doze/Utils.java
     protected static boolean sensorsEnabled(Context context) {
         return pickUpEnabled(context) || handwaveGestureEnabled(context)
                 || pocketGestureEnabled(context);
+=======
+    public static boolean sensorsEnabled(Context context) {
+        return isPickUpEnabled(context) || isHandwaveGestureEnabled(context)
+                || isPocketGestureEnabled(context);
+    }
+
+    protected static Sensor getSensor(SensorManager sm, String type) {
+        for (Sensor sensor : sm.getSensorList(Sensor.TYPE_ALL)) {
+            if (type.equals(sensor.getStringType())) {
+                return sensor;
+            }
+        }
+        return null;
+>>>>>>> d5c496f... msm8953-common: Convert XiaomiDoze into XiaomiParts:parts/src/org/lineageos/settings/doze/DozeUtils.java
     }
 }
