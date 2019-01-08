@@ -117,11 +117,6 @@ public final class DozeUtils {
         return new AmbientDisplayConfiguration(context).alwaysOnAvailable();
     }
 
-    protected static void enableGesture(Context context, String gesture, boolean enable) {
-        PreferenceManager.getDefaultSharedPreferences(context).edit()
-                .putBoolean(gesture, enable).apply();
-    }
-
     protected static boolean isGestureEnabled(Context context, String gesture) {
         return PreferenceManager.getDefaultSharedPreferences(context)
                 .getBoolean(GESTURE_PICK_UP_KEY, false);
