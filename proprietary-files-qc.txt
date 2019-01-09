@@ -241,11 +241,6 @@ vendor/lib/libmm-hdcpmgr.so
 vendor/lib/librs_adreno.so
 vendor/lib/librs_adreno_sha1.so
 vendor/lib/libscalar.so
-vendor/lib/libsdm-color.so
-vendor/lib/libsdm-diag.so
--vendor/lib/libsdm-disp-vndapis.so
-vendor/lib/libsdmextension.so
-vendor/lib/libtinyxml2_1.so
 vendor/lib64/egl/eglSubDriverAndroid.so
 vendor/lib64/egl/libEGL_adreno.so
 vendor/lib64/egl/libGLESv1_CM_adreno.so
@@ -268,10 +263,17 @@ vendor/lib64/libmm-hdcpmgr.so
 vendor/lib64/librs_adreno.so
 vendor/lib64/librs_adreno_sha1.so
 vendor/lib64/libscalar.so
-vendor/lib64/libsdm-color.so
+
+# Graphics (SDM) - from D1C - PKQ1.181105.001 00CN_6_120
+vendor/lib/libsdm-color.so|78745aee29ebaf1b29e51a7e4de4a8f6559e155f
+vendor/lib/libsdm-diag.so
+-vendor/lib/libsdm-disp-vndapis.so|6c4233ea3676643bc9658c25cfad7edd45c49362
+vendor/lib/libsdmextension.so|b7dc9bf5af1f0e528653db6ff055a0050b9ff556
+vendor/lib/libtinyxml2_1.so
+vendor/lib64/libsdm-color.so|a1af37dd56eea852759efe3aa213df3bd3c00daf
 vendor/lib64/libsdm-diag.so
--vendor/lib64/libsdm-disp-vndapis.so
-vendor/lib64/libsdmextension.so
+-vendor/lib64/libsdm-disp-vndapis.so|3ceb59b68f3057f2297af9f4badac07ef1da1008
+vendor/lib64/libsdmextension.so|fd0c55fb27df93a36affccba87843fe50a246719
 vendor/lib64/libtinyxml2_1.so
 
 # Graphics firmware
