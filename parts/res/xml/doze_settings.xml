@@ -25,7 +25,7 @@
         android:persistent="false" />
 
     <PreferenceCategory
-        android:key="pickup_sensor"
+        android:key="tilt_sensor"
         android:title="@string/pickup_sensor_title">
 
         <SwitchPreference
