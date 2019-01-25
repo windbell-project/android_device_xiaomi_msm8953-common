@@ -158,7 +158,6 @@ lib64/libsdm-disp-apis.so:vendor/lib64/libsdm-disp-apis.so
 -lib64/vendor.display.color@1.0.so
 lib64/vendor.display.postproc@1.0.so
 lib64/vendor.qti.hardware.qdutils_disp@1.0.so
-vendor/bin/hw/vendor.display.color@1.0-service
 vendor/bin/hw/vendor.qti.hardware.qdutils_disp@1.0-service-qti
 vendor/etc/init/vendor.display.color@1.0-service.rc
 vendor/etc/init/vendor.qti.hardware.qdutils_disp@1.0-service-qti.rc
@@ -385,10 +384,10 @@ vendor/bin/pm-service
 vendor/lib/libperipheral_client.so
 vendor/lib64/libperipheral_client.so
 
-# Postprocessing
-vendor/bin/mm-pp-dpps
-vendor/lib/libdisp-aba.so
-vendor/lib64/libdisp-aba.so
+# Postprocessing - from LA.UM.7.5.r1-03700-8x96.0
+vendor/bin/hw/vendor.display.color@1.0-service|2ca340c7fd7689ac8ddf36f948fd95a7cd3bfc2e
+vendor/bin/mm-pp-dpps|89656e2349f6c81fe9a26e7c70e304ea77e1079
+vendor/lib64/libdisp-aba.so|95cafbc303cbf3017c7f10276454ef908b258b1c
 
 # Power-off alarm
 framework/vendor.qti.hardware.alarm-V1.0-java.jar
