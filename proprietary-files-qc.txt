@@ -50,6 +50,10 @@ lib/soundfx/libdirac.so
 lib/libDiracAPI_SHARED.so
 vendor/etc/diracmobile.config
 
+# Audiosphere
+lib/soundfx/libasphere.so
+lib64/soundfx/libasphere.so
+
 # ANT+ (vendor)
 vendor/lib64/com.qualcomm.qti.ant@1.0.so
 
