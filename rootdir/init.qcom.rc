@@ -400,8 +400,8 @@ on post-fs-data
     #Start move time data to /data/vendor once post-fs-data done
     start vendor.move_time_data
 
-on property:hw.fm.init=*
-    write /sys/module/radio_iris_transport/parameters/fmsmd_set ${hw.fm.init}
+on property:vendor.hw.fm.init=*
+    write /sys/module/radio_iris_transport/parameters/fmsmd_set ${vendor.hw.fm.init}
 
 service iop /system/vendor/bin/iop
     class main
@@ -432,6 +432,8 @@ on property:vendor.radio.atfwd.start=false
 
 on property:vold.decrypt=trigger_restart_framework
     start config_bt_addr
+    stop vendor.camera-provider-2-4
+    start vendor.camera-provider-2-4
     start wcnss-service
 
 on property:persist.env.fastdorm.enabled=true
