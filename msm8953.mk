@@ -297,6 +297,9 @@ PRODUCT_PACKAGES += \
     move_time_data.sh \
     move_wifi_data.sh
 
+# Performance
+include vendor/qcom/common/qti-vendor.mk
+
 # RenderScript HAL
 PRODUCT_PACKAGES += \
     android.hardware.renderscript@1.0-impl
