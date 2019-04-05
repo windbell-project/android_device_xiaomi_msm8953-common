@@ -74,20 +74,12 @@ public class ProximitySensor implements SensorEventListener {
     private boolean shouldPulse(long timestamp) {
         long delta = timestamp - mInPocketTime;
 
-<<<<<<< HEAD:doze/src/org/lineageos/settings/doze/ProximitySensor.java
-        if (Utils.handwaveGestureEnabled(mContext) && Utils.pocketGestureEnabled(mContext)) {
-            return true;
-        } else if (Utils.handwaveGestureEnabled(mContext)) {
-            return delta < HANDWAVE_MAX_DELTA_NS;
-        } else if (Utils.pocketGestureEnabled(mContext)) {
-=======
         if (DozeUtils.isHandwaveGestureEnabled(mContext) &&
                 DozeUtils.isPocketGestureEnabled(mContext)) {
             return true;
         } else if (DozeUtils.isHandwaveGestureEnabled(mContext)) {
             return delta < HANDWAVE_MAX_DELTA_NS;
         } else if (DozeUtils.isPocketGestureEnabled(mContext)) {
->>>>>>> d5c496f... msm8953-common: Convert XiaomiDoze into XiaomiParts:parts/src/org/lineageos/settings/doze/ProximitySensor.java
             return delta >= POCKET_MIN_DELTA_NS;
         }
         return false;

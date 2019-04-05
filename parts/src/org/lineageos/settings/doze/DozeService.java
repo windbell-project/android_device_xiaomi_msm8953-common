@@ -1,6 +1,6 @@
 /*
- * Copyright (c) 2015 The CyanogenMod Project
- *               2017 The LineageOS Project
+ * Copyright (C) 2015 The CyanogenMod Project
+ *               2017-2018 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -66,38 +66,22 @@ public class DozeService extends Service {
 
     private void onDisplayOn() {
         if (DEBUG) Log.d(TAG, "Display on");
-<<<<<<< HEAD:doze/src/org/lineageos/settings/doze/DozeService.java
-        if (Utils.pickUpEnabled(this)) {
-            mTiltSensor.disable();
-        }
-        if (Utils.handwaveGestureEnabled(this) ||
-                Utils.pocketGestureEnabled(this)) {
-=======
         if (DozeUtils.isPickUpEnabled(this)) {
             mTiltSensor.disable();
         }
         if (DozeUtils.isHandwaveGestureEnabled(this) ||
                 DozeUtils.isPocketGestureEnabled(this)) {
->>>>>>> d5c496f... msm8953-common: Convert XiaomiDoze into XiaomiParts:parts/src/org/lineageos/settings/doze/DozeService.java
             mProximitySensor.disable();
         }
     }
 
     private void onDisplayOff() {
         if (DEBUG) Log.d(TAG, "Display off");
-<<<<<<< HEAD:doze/src/org/lineageos/settings/doze/DozeService.java
-        if (Utils.pickUpEnabled(this)) {
-            mTiltSensor.enable();
-        }
-        if (Utils.handwaveGestureEnabled(this) ||
-                Utils.pocketGestureEnabled(this)) {
-=======
         if (DozeUtils.isPickUpEnabled(this)) {
             mTiltSensor.enable();
         }
         if (DozeUtils.isHandwaveGestureEnabled(this) ||
                 DozeUtils.isPocketGestureEnabled(this)) {
->>>>>>> d5c496f... msm8953-common: Convert XiaomiDoze into XiaomiParts:parts/src/org/lineageos/settings/doze/DozeService.java
             mProximitySensor.enable();
         }
     }

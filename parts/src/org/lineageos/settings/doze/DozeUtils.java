@@ -1,11 +1,6 @@
 /*
-<<<<<<< HEAD
- * Copyright (c) 2015 The CyanogenMod Project
- *               2017 The LineageOS Project
-=======
  * Copyright (C) 2015 The CyanogenMod Project
  *               2017-2019 The LineageOS Project
->>>>>>> 4509b59... msm8953-common: parts: Add AOD support to Ambient Display
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -118,17 +113,19 @@ public final class DozeUtils {
 
     protected static boolean isGestureEnabled(Context context, String gesture) {
         return PreferenceManager.getDefaultSharedPreferences(context)
-                .getBoolean(GESTURE_PICK_UP_KEY, false);
+                .getBoolean(gesture, false);
     }
 
-    protected static boolean handwaveGestureEnabled(Context context) {
-        return PreferenceManager.getDefaultSharedPreferences(context)
-                .getBoolean(GESTURE_HAND_WAVE_KEY, false);
+    protected static boolean isPickUpEnabled(Context context) {
+        return isGestureEnabled(context, GESTURE_PICK_UP_KEY);
     }
 
-    protected static boolean pocketGestureEnabled(Context context) {
-        return PreferenceManager.getDefaultSharedPreferences(context)
-                .getBoolean(GESTURE_POCKET_KEY, false);
+    protected static boolean isHandwaveGestureEnabled(Context context) {
+        return isGestureEnabled(context, GESTURE_HAND_WAVE_KEY);
+    }
+
+    protected static boolean isPocketGestureEnabled(Context context) {
+        return isGestureEnabled(context, GESTURE_POCKET_KEY);
     }
 
     public static boolean sensorsEnabled(Context context) {
