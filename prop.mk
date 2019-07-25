@@ -9,13 +9,9 @@ audio.deep_buffer.media=true \
 audio.offload.disable=true \
 audio.offload.min.duration.secs=30 \
 audio.offload.video=true \
-persist.vendor.audio.fluence.speaker=true \
-persist.vendor.audio.fluence.voicecall=true \
-persist.vendor.audio.fluence.voicerec=true \
 ro.config.media_vol_steps=25 \
 ro.config.vc_call_vol_steps=7 \
 persist.vendor.btstack.enable.splita2dp=false \
-ro.vendor.audio.sdk.fluencetype=fluence \
 ro.vendor.audio.sdk.ssr=false \
 vendor.audio.flac.sw.decoder.24bit=true \
 vendor.audio.offload.buffer.size.kb=64 \
@@ -192,7 +188,7 @@ sys.use_fifo_ui=1
 
 # Usb
 PRODUCT_PROPERTY_OVERRIDES += \
-persist.vendor.sys.usb.config.extra=none
+persist.vendor.usb.config.extra=none
 
 # Wifi
 PRODUCT_PROPERTY_OVERRIDES += \
