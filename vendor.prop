@@ -141,6 +141,7 @@ ro.vendor.qti.sys.fw.bservice_enable=true
 
 # Perf
 ro.vendor.extension_library=libqti-perfd-client.so
+ro.vendor.perf.scroll_opt=true
 
 # Netflix
 ro.netflix.bsp_rev=Q660-13149-1
