@@ -82,3 +82,6 @@
 
 # Touchboost
 /sys/module/msm_performance/parameters/touchboost		u:object_r:sysfs_touchboost:s0
+
+# Usb
+/(vendor|system/vendor)/bin/hw/android\.hardware\.usb@1\.0-service\.msm8953       u:object_r:hal_usb_default_exec:s0
