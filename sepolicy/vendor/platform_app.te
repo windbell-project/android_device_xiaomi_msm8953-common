@@ -1,5 +1,6 @@
 # FPS Info
-allow platform_app sysfs_fps:file { getattr open read };
+allow platform_app sysfs_fpsinfo:file { getattr open read };
+allow platform_app sysfs_graphics:dir search;
 
 # QS System Info
 allow platform_app sysfs_device_info:lnk_file { read open getattr ioctl };

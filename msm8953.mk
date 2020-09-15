@@ -318,7 +318,8 @@ PRODUCT_PACKAGES += \
     init.qcom.usb.rc \
     init.target.rc \
     ueventd.qcom.rc \
-    init.performance_level.rc
+    init.performance_level.rc \
+    init.xiaomi_parts.rc
 
 PRODUCT_PACKAGES += \
     init.qcom.sh \
