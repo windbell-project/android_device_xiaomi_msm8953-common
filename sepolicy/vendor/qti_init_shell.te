@@ -6,3 +6,17 @@ allow qti_init_shell bluetooth_data_file:file r_file_perms;
 
 allow qti_init_shell ctl_start_prop:property_service set;
 dontaudit qti_init_shell self:capability dac_override;
+
+# XiaomiParts
+allow qti_init_shell kcal_dev:dir search;
+allow qti_init_shell kcal_dev:file rw_file_perms;
+allow qti_init_shell sysfs_vibrator:dir search;
+allow qti_init_shell sysfs_vibrator:file rw_file_perms;
+allow qti_init_shell sysfs_fpsinfo:dir search;
+allow qti_init_shell sysfs_fpsinfo:file rw_file_perms;
+allow qti_init_shell sysfs_hgain:dir search;
+allow qti_init_shell sysfs_hgain:file rw_file_perms;
+allow qti_init_shell sysfs_mgain:dir search;
+allow qti_init_shell sysfs_mgain:file rw_file_perms;
+allow qti_init_shell sysfs_sgain:dir search;
+allow qti_init_shell sysfs_sgain:file rw_file_perms;
