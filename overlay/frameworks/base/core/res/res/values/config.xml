@@ -615,4 +615,7 @@
 
     <!-- True if the device supports Sustained Performance Mode -->
     <bool name="config_sustainedPerformanceModeSupported">true</bool>
+
+    <!-- Remote server that can provide NTP responses. -->
+    <string translatable="false" name="config_ntpServer">pool.ntp.org</string>
 </resources>
