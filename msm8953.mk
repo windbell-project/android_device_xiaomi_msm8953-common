@@ -276,7 +276,7 @@ PRODUCT_PACKAGES += \
 
 # Power
 PRODUCT_PACKAGES += \
-    android.hardware.power@1.3-service.onclite-libperfmgr
+    android.hardware.power-service.xiaomi-libperfmgr
 
 PRODUCT_PACKAGES += \
     android.hardware.power@1.0.vendor \
