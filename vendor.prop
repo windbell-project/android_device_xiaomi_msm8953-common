@@ -179,6 +179,10 @@ vendor.service.qti.ims.enabled=1
 # Spectrum
 spectrum.support=1
 
+# SoC
+ro.soc.manufacturer=Qualcomm
+ro.soc.model=MSM8953
+
 # Time Services
 persist.timed.enable=true
 
