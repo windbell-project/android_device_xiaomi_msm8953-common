@@ -110,10 +110,11 @@ ro.vendor.qti.va_aosp.support=1
 # Gboard
 ro.com.google.ime.kb_pad_port_b=1
 
-# IORap
-ro.iorapd.enable=true
-iorapd.perfetto.enable=true
-iorapd.readahead.enable=true
+# IMS
+persist.vendor.ims.disableADBLogs=1
+persist.vendor.ims.disableIMSLogs=1
+persist.vendor.ims.disableDebugLogs=1
+persist.vendor.ims.disableQXDMLogs=1
 
 # Media
 av.debug.disable.pers.cache=1
