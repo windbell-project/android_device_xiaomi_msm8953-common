@@ -14,8 +14,6 @@
 # limitations under the License.
 #
 
-$(call inherit-product, vendor/xiaomi/msm8953-common/msm8953-common-vendor.mk)
-
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
@@ -417,3 +415,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_BOOT_JARS += \
     WfdCommon
+
+# Inherit the proprietary files
+$(call inherit-product, vendor/xiaomi/msm8953-common/msm8953-common-vendor.mk)
