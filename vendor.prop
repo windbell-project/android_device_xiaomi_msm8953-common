@@ -108,6 +108,11 @@ ro.frp.pst=/dev/block/bootdevice/by-name/config
 # Fwk detect
 ro.vendor.qti.va_aosp.support=1
 
+# IORap
+ro.iorapd.enable=true
+iorapd.perfetto.enable=true
+iorapd.readahead.enable=true
+
 # Media
 av.debug.disable.pers.cache=1
 debug.stagefright.omx_default_rank.sw-audio=1
