@@ -15,4 +15,7 @@
 
   <!-- Disable Battery Heath services -->
   <bool name="config_supportBatteryHealth">false</bool>
+
+    <!-- Adaptive Charging -->
+    <bool name="config_supportAdaptiveCharging">true</bool>
 </resources>
