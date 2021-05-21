@@ -479,8 +479,8 @@
     </string-array>
     <!-- Default value for proximity check on screen wake
      NOTE ! - Enable for devices that have a fast response proximity sensor (ideally < 300ms)-->
-    <bool name="config_proximityCheckOnWake">true</bool>
-    <bool name="config_proximityCheckOnWakeEnabledByDefault">true</bool>
+    <bool name="config_proximityCheckOnWake">false</bool>
+    <bool name="config_proximityCheckOnWakeEnabledByDefault">false</bool>
 
     <!-- Hardware keys present on the device, stored as a bit field.
          This integer should equal the sum of the corresponding value for each
@@ -533,6 +533,14 @@
     <string name="config_sysGPULoad">/sys/kernel/gpu/gpu_busy</string>
     <integer name="config_sysCPUTempMultiplier">10</integer>
     <integer name="config_sysBatteryTempMultiplier">10</integer>
+
+    <!-- Whether device supports an alt. ambient display -->
+    <bool name="config_alt_ambient_display">true</bool>
+
+    <!-- Whether device supports sensor based doze customizations -->
+    <bool name="config_dozePulseTilt">true</bool>
+    <bool name="config_dozePulseProximity">true</bool>
+    <bool name="config_deviceHaveWakeUpProximity">true</bool>
 
 </resources>
 
