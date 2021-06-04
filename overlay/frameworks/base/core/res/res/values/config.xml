@@ -522,4 +522,8 @@
             2 - Supported with variable brightness control
     -->
     <integer name="config_deviceSupportsButtonBrightnessControl">1</integer>
+
+    <!-- Enable Smart charging -->
+    <bool name="config_smartChargingAvailable">true</bool>
 </resources>
+
