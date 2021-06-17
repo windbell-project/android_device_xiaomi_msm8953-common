@@ -19,3 +19,5 @@ type debugfs_rmt, debugfs_type, fs_type;
 # Touchscreen
 type proc_touchpanel, fs_type, sysfs_type, proc_type;
 
+# FPS Info
+type sysfs_fps, sysfs_type, fs_type;
