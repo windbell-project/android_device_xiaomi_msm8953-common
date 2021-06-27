@@ -40,6 +40,12 @@ qcom.bluetooth.soc=smd \
 ro.bluetooth.hfp.ver=1.7 \
 ro.qualcomm.bt.hci_transport=smd
 
+# Blur
+ro.surface_flinger.supports_background_blur=1
+persist.sys.sf.disable_blurs=1
+ro.sf.blurs_are_expensive=1
+debug.sf.disable_backpressure=1
+
 # Bpf
 PRODUCT_PROPERTY_OVERRIDES += \
 ro.kernel.ebpf.supported=1
@@ -70,12 +76,14 @@ persist.vendor.dpm.loglevel=0
 
 # Display
 PRODUCT_PROPERTY_OVERRIDES += \
-debug.egl.hw=0 \
+debug.egl.hw=1 \
 debug.enable.sglscale=1 \
 debug.gralloc.enable_fb_ubwc=1 \
 debug.mdpcomp.logs=0 \
+debug.performance.tuning=1 \
+debug.sf.enable_gl_backpressure=1 \
 debug.sf.enable_hwc_vds=1 \
-debug.sf.hw=0 \
+debug.sf.hw=1 \
 debug.sf.latch_unsignaled=1 \
 debug.sf.recomputecrop=0 \
 dev.pm.dyn_samplingrate=1 \
