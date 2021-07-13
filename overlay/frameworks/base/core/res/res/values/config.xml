@@ -524,9 +524,9 @@
 
     <!-- Adaptive Charging -->
     <bool name="config_adaptiveChargingAvailable">true</bool>
-    <string name="config_adaptiveChargingSysfsNode" translatable="false">/sys/class/power_supply/battery/input_suspend</string>
-    <string name="config_adaptiveChargingSuspendValue" translatable="false">1</string>
-    <string name="config_adaptiveChargingResumeValue" translatable="false">0</string>
+    <string name="config_adaptiveChargingSysfsNode" translatable="false">/sys/class/power_supply/battery/charging_enabled</string>
+    <string name="config_adaptiveChargingSuspendValue" translatable="false">0</string>
+    <string name="config_adaptiveChargingResumeValue" translatable="false">1</string>
 
     <!-- Whether device needs to wait for Qualcomm MPCTL service to start
          before setting power profiles on boot. -->
