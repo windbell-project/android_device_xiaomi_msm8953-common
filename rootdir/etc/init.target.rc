@@ -208,6 +208,12 @@ on boot
     chmod 0664 /dev/cpuset/camera-daemon/tasks
     chown system system /sys/kernel/hbtp/display_pwr
 
+	#smartcharging
+    chown system system /sys/class/power_supply/battery/input_suspend	
+    chmod 0666 /sys/class/power_supply/battery/input_suspend
+	chmod 0660 /sys/class/power_supply/battery/charging_enabled
+    chown system system /sys/class/power_supply/battery/charging_enabled
+
 # access permission for wlan
     chown system system /mnt/vendor/persist/WCNSS_qcom_wlan_nv.bin
 
