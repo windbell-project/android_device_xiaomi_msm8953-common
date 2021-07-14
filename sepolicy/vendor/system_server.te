@@ -8,3 +8,6 @@ r_dir_file(untrusted_app, sysfs_battery_supply)
 r_dir_file(untrusted_app, sysfs_usb_supply)
 allow system_server sysfs_usb_supply:file { getattr open read write };  
 
+get_prop(system_server, userspace_reboot_exported_prop);
+get_prop(system_server, userspace_reboot_config_prop);
+
