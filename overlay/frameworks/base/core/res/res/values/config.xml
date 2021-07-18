@@ -554,4 +554,6 @@
     <bool name="config_dozePulseTilt">true</bool>
     <bool name="config_dozePulseProximity">true</bool>
     <bool name="config_deviceHaveWakeUpProximity">true</bool>
+
+    <bool name="config_multiColorBatteryLed">false</bool>
 </resources>
