@@ -751,6 +751,7 @@ vendor/lib64/sensors.ssc.so|3d6eed945ab3ec2d91517cd6e9941df17a290445
 vendor/bin/thermal-engine|bbf772d4acf6c11413d2f728140aae63a49d3eae
 -vendor/lib/libthermalclient.so|523476e106337823696f0600b48f057d8c629465
 -vendor/lib64/libthermalclient.so|796c3e071fe9d6fa57598e1205a762cb55720f88
+vendor/lib64/libthermalfeature.so|ab2ba5a6ce22d5921d9cc85b1be83742
 vendor/lib64/libthermalioctl.so|6eed5b8ca6989809eac27abd4af19bbd6f3845ee
 
 # Time services - from daisy
