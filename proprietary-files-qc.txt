@@ -775,6 +775,7 @@ vendor/lib64/vendor.qti.voiceprint@1.0.so|aeca80d0859dd1084b4a6585779d79b48ae9aa
 # Widevine - from daisy
 vendor/bin/hw/android.hardware.drm@1.2-service.widevine|e130b8f1c8d46d8a185b00cba5ff8a2a871ee94c
 vendor/etc/init/android.hardware.drm@1.2-service.widevine.rc|f206aecdd6843795f6448bb6d44d2244b3e48815
+-vendor/etc/vintf/manifest/manifest_android.hardware.drm@1.2-service.widevine.xml
 vendor/lib/mediadrm/libwvdrmengine.so|7974b0b6af11ea8e78b7e6e1a7d0f9cc7132bd3d
 vendor/lib64/libwvhidl.so|7161a1f0992da071e842655fcd42f20fa36909ac
 vendor/lib64/mediadrm/libwvdrmengine.so|221b4daf14c4938a710dfe942d4c55af9906b907
