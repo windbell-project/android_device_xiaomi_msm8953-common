@@ -1,0 +1,44 @@
+# GPU Boost by ronax 
+# Depends on Adrenoboost and Adreno idler driver
+# Initialization
+on property:sys.boot_completed=1
+   chown system system /sys/devices/soc/1c00000.qcom,kgsl-3d0/devfreq/1c00000.qcom,kgsl-3d0/adrenoboost
+   chmod 0644 /sys/devices/soc/1c00000.qcom,kgsl-3d0/devfreq/1c00000.qcom,kgsl-3d0/adrenoboost
+
+# Set default profile on first boot
+    exec u:r:init:s0 root root -- /vendor/bin/init.gpuboost.sh
+    exec u:r:magisk:s0 root root -- /vendor/bin/init.gpuboost.sh
+    exec u:r:su:s0 root root -- /vendor/bin/init.gpuboost.sh
+
+# Enable gpuboost support
+   setprop gpuboost.support 1
+
+# Disable (default profile)
+on property:persist.gpuboost.profile=0
+    write /sys/devices/soc/1c00000.qcom,kgsl-3d0/devfreq/1c00000.qcom,kgsl-3d0/adrenoboost 0
+    write /sys/module/adreno_idler/parameters/adreno_idler_active "Y"
+    write /sys/module/adreno_idler/parameters/adreno_idler_idleworkload "10000"
+    write /sys/module/adreno_idler/parameters/adreno_idler_downdifferential "35"
+    write /sys/module/adreno_idler/parameters/adreno_idler_idlewait "25"
+
+# Low
+on property:persist.gpuboost.profile=1
+    write /sys/devices/soc/1c00000.qcom,kgsl-3d0/devfreq/1c00000.qcom,kgsl-3d0/adrenoboost 1
+    write /sys/module/adreno_idler/parameters/adreno_idler_active "Y"
+    write /sys/module/adreno_idler/parameters/adreno_idler_idleworkload "6000"
+    write /sys/module/adreno_idler/parameters/adreno_idler_downdifferential "15"
+    write /sys/module/adreno_idler/parameters/adreno_idler_idlewait "25"
+
+# Medium
+on property:persist.gpuboost.profile=2
+    write /sys/devices/soc/1c00000.qcom,kgsl-3d0/devfreq/1c00000.qcom,kgsl-3d0/adrenoboost 2
+    write /sys/module/adreno_idler/parameters/adreno_idler_active "Y"
+    write /sys/module/adreno_idler/parameters/adreno_idler_idleworkload "5000"
+    write /sys/module/adreno_idler/parameters/adreno_idler_downdifferential "15"
+    write /sys/module/adreno_idler/parameters/adreno_idler_idlewait "15"
+
+# High
+on property:persist.gpuboost.profile=3
+    write /sys/devices/soc/1c00000.qcom,kgsl-3d0/devfreq/1c00000.qcom,kgsl-3d0/adrenoboost 3
+    write /sys/module/adreno_idler/parameters/adreno_idler_active "N"
+

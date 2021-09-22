@@ -27,3 +27,4 @@ type kcal_dev, sysfs_type, fs_type;
 type sysfs_fpsinfo, sysfs_type, fs_type;
 type sysfs_torch, sysfs_type, fs_type;
 type sysfs_fastcharge, sysfs_type, fs_type;
+type sysfs_touchboost, sysfs_type, fs_type;

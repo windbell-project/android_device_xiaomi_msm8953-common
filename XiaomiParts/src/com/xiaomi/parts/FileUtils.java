@@ -16,6 +16,7 @@
 
 package com.xiaomi.parts;
 
+import android.os.SystemProperties;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.content.pm.ApplicationInfo;
@@ -138,5 +139,33 @@ public class FileUtils {
             return !fileValue.equals("0");
         }
         return defValue;
+    }
+
+    static void setProp(String prop, boolean value) {
+        if (value) {
+            SystemProperties.set(prop, "1");
+        } else {
+            SystemProperties.set(prop, "0");
+        }
+    }
+
+    static boolean getProp(String prop, boolean defaultValue) {
+        return SystemProperties.getBoolean(prop, defaultValue);
+    }
+
+    static void setStringProp(String prop, String value) {
+        SystemProperties.set(prop, value);
+    }
+
+    static String getStringProp(String prop, String defaultValue) {
+        return SystemProperties.get(prop, defaultValue);
+    }
+
+    static void setintProp(String prop, int value) {
+        SystemProperties.set(prop, String.valueOf(value));
+    }
+
+    static int getintProp(String prop, int defaultValue) {
+        return SystemProperties.getInt(prop, defaultValue);
     }
 }
