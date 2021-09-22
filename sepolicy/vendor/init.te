@@ -5,3 +5,6 @@ allow init sysfs_type:file { setattr };
 
 # USB Fastcharger
 allow init sysfs_fastcharge:file { write };
+
+# Boost
+allow init vendor_file:file { execute };

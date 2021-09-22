@@ -1,0 +1,39 @@
+# cpuboost by ronax 
+# Depends on caf cpu boost driver
+# Initialization
+on property:sys.boot_completed=1
+   chown system system /sys/module/cpu_boost/parameters/input_boost_enabled
+   chown system system /sys/module/cpu_boost/parameters/input_boost_freq
+   chown system system /sys/module/cpu_boost/parameters/input_boost_ms
+   chmod 0644 /sys/module/cpu_boost/parameters/input_boost_enabled
+   chmod 0644 /sys/module/cpu_boost/parameters/input_boost_freq
+   chmod 0644 /sys/module/cpu_boost/parameters/input_boost_ms
+
+# Set default profile on first boot
+    exec u:r:init:s0 root root -- /vendor/bin/init.cpuboost.sh
+    exec u:r:magisk:s0 root root -- /vendor/bin/init.cpuboost.sh
+
+# Enable cpuboost support
+   setprop cpuboost.support 1
+
+# Disable
+on property:persist.cpuboost.profile=0
+    write /sys/module/cpu_boost/parameters/input_boost_enabled 0
+
+# Low (default profile)
+on property:persist.cpuboost.profile=1
+    write /sys/module/cpu_boost/parameters/input_boost_enabled 1 
+    write /sys/module/cpu_boost/parameters/input_boost_freq "0:1036800 1:1036800 2:1036800 3:1036800 4:1036800 5:1036800 6:1036800 7:1036800"
+    write /sys/module/cpu_boost/parameters/input_boost_ms 400
+
+# Medium
+on property:persist.cpuboost.profile=2
+    write /sys/module/cpu_boost/parameters/input_boost_enabled 1
+    write /sys/module/cpu_boost/parameters/input_boost_freq "0:1401600 1:1401600 2:1401600 3:1401600 4:1401600 5:1401600 6:1401600 7:1401600"
+    write /sys/module/cpu_boost/parameters/input_boost_ms 750
+
+# High
+on property:persist.cpuboost.profile=3
+    write /sys/module/cpu_boost/parameters/input_boost_enabled 1
+    write /sys/module/cpu_boost/parameters/input_boost_freq "0:1804800 1:1804800 2:1689600 3:1689600 4:1401600 5:1401600 6:1401600 7:1401600"
+    write /sys/module/cpu_boost/parameters/input_boost_ms 1500

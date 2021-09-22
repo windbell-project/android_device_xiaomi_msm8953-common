@@ -9,7 +9,7 @@
     <string name="audio_category">Audio</string>
     <string name="display_category">Display</string>
     <string name="other_category">Other</string>
-    <string name="torch_category">Torch Settings</string>
+    <string name="torch_category">Torch</string>
 
     <!-- Torch -->
     <string name="yellow_torch_brightness_title">Yellow Torch Brightness</string>
@@ -193,5 +193,48 @@
     <string name="vibration_system_title">System Vibration Strength</string>
     <string name="vibration_notification_title">Notification Vibration Strength</string>
     <string name="vibration_call_title">Call Vibration Strength</string>
+
+    <!-- Spectrum Profiles -->
+    <string name="spectrum_profile_title">Spectrum</string>
+    <string name="spectrum_title">Spectrum Profiles</string>
+    <string name="spectrum_summary">Choose your Spectrum Profiles</string>
+    <string name="spectrum_dialogTitle">Choose your Spectrum Profiles</string>
+
+    <!-- Values for Spectrum Presets -->
+    <string name="spectrum_performance">Performance</string>
+    <string name="spectrum_battery">Battery</string>
+    <string name="spectrum_gaming">Gaming</string>
+    <string name="spectrum_balance">Balance</string>
+    <string name="spectrum_ubattery">Ultra Battery</string>
+
+    <!-- Boost Mode -->
+    <string name="boost_mode_title">Boost</string>
+
+    <!-- Touchboost -->
+    <string name="touchboost_title">Enable Touchboost</string>
+    <string name="touchboost_summary">Boost cpu when touch detected for smooth experience</string>
+
+    <!-- GPU Boost Profiles -->
+    <string name="gpuboost_title">GPU Boost</string>
+    <string name="gpuboost_summary">Boost your gpu without compromising power efficiency</string>
+    <string name="gpuboost_dialogTitle">Select your GPU boost level</string>
+
+    <!-- Values for GPU Boost Presets -->
+    <string name="gpuboost_high">High</string>
+    <string name="gpuboost_medium">Medium</string>
+    <string name="gpuboost_low">Low</string>
+    <string name="gpuboost_disable">Disable</string>
+
+    <!-- CPU Boost Profiles -->
+    <string name="cpuboost_title">CPU Boost</string>
+    <string name="cpuboost_summary">Boost your cpu for better Experience</string>
+    <string name="cpuboost_dialogTitle">Select your CPU Boost level</string>
+
+    <!-- Values for CPU Boost Presets -->
+    <string name="cpuboost_extreme">Extreme</string>
+    <string name="cpuboost_high">High</string>
+    <string name="cpuboost_medium">Medium</string>
+    <string name="cpuboost_low">Low</string>
+    <string name="cpuboost_disable">Disable</string>
 
 </resources>
