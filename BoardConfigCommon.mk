@@ -124,6 +124,9 @@ BOARD_ROOT_EXTRA_SYMLINKS := \
     /vendor/firmware_mnt:/firmware \
     /mnt/vendor/persist:/persist
 
+# Power
+TARGET_USES_INTERACTION_BOOST := true
+
 # Qualcomm
 BOARD_USES_QCOM_HARDWARE := true
 
