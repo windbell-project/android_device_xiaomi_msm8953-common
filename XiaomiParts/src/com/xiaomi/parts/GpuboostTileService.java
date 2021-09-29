@@ -22,7 +22,7 @@ public class GpuboostTileService extends TileService {
         int currentState = FileUtils.getintProp(DeviceSettings.GPUBOOST_SYSTEM_PROPERTY, 0);
 
         int nextState;
-        if (currentState == 3) {
+        if (currentState == 4) {
             nextState = 0;
         } else {
             nextState = currentState + 1;

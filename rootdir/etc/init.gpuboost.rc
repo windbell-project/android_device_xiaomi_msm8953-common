@@ -28,3 +28,7 @@ on property:persist.gpuboost.profile=2
 # High
 on property:persist.gpuboost.profile=3
     write /sys/devices/platform/soc/1c00000.qcom,kgsl-3d0/devfreq/1c00000.qcom,kgsl-3d0/adrenoboost 3
+
+# Extreme
+on property:persist.gpuboost.profile=4
+    write /sys/devices/platform/soc/1c00000.qcom,kgsl-3d0/devfreq/1c00000.qcom,kgsl-3d0/adrenoboost 4
