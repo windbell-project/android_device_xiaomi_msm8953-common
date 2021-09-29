@@ -220,6 +220,7 @@
     <string name="gpuboost_dialogTitle">Select your GPU boost level</string>
 
     <!-- Values for GPU Boost Presets -->
+    <string name="gpuboost_extreme">Extreme</string>
     <string name="gpuboost_high">High</string>
     <string name="gpuboost_medium">Medium</string>
     <string name="gpuboost_low">Low</string>
