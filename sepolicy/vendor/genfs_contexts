@@ -25,3 +25,7 @@ genfscon sysfs /kernel/fast_charge/force_fast_charge               u:object_r:sy
 genfscon sysfs /devices/platform/soc/200f000.qcom,spmi/spmi-0/spmi0-03/200f000.qcom,spmi:qcom,pmi8950@3:qcom,leds@d300/leds/led:torch_0/max_brightness              u:object_r:sysfs_torch:s0
 genfscon sysfs /devices/platform/soc/200f000.qcom,spmi/spmi-0/spmi0-03/200f000.qcom,spmi:qcom,pmi8950@3:qcom,leds@d300/leds/led:torch_1/max_brightness              u:object_r:sysfs_torch:s0
 genfscon sysfs /module/msm_performance/parameters/touchboost		u:object_r:sysfs_touchboost:s0
+
+# Battery Saver
+genfscon sysfs /module/battery_saver/parameters/enabled u:object_r:sysfs_battery_saver:s0
+
