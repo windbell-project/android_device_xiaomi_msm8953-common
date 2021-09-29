@@ -31,3 +31,6 @@ type sysfs_touchboost, sysfs_type, fs_type;
 
 # Battery Saver
 type sysfs_battery_saver, fs_type, sysfs_type;
+
+type vendor_sysfs_kgsl, sysfs_type, fs_type;
+
