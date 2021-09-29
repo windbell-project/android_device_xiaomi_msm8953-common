@@ -232,6 +232,10 @@ on boot
     write /sys/block/mmcblk0/queue/scheduler "bfq"
     write /sys/block/mmcblk0/queue/nr_requests 128
 
+    # GPU boost
+    chown system system /sys/class/kgsl/kgsl-3d0/min_pwrlevel
+    chmod 0660 /sys/class/kgsl/kgsl-3d0/min_pwrlevel
+
 # msm specific files that need to be created on /data
 on post-fs-data
     mkdir /data/vendor/misc 01771 system system
