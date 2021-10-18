@@ -1,2 +1,5 @@
 # Fwk detect
 ro.vendor.qti.va_aosp.support=1
+
+# storage.xml moment
+persist.sys.binary_xml=false
