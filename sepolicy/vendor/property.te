@@ -1,11 +1,14 @@
 # Dirac
-type dirac_prop, property_type;
+system_public_prop(dirac_prop)
 
 # GPUboost
-type gpuboost_prop, property_type;
+system_public_prop(gpuboost_prop)
 
 # CPUboost
-type cpuboost_prop, property_type;
+system_public_prop(cpuboost_prop)
 
 # Spectrum
-type spectrum_prop, property_type;
+system_public_prop(spectrum_prop)
+
+# Fingerprint
+system_public_prop(vendor_fp_prop)
