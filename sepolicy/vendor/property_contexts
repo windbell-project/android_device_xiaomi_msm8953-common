@@ -9,18 +9,6 @@ ctl.vendor.imsrcsd         u:object_r:vendor_ctl_vendor_imsrcsservice_prop:s0
 sys.fp.goodix              u:object_r:vendor_fp_prop:s0
 sys.fp.vendor              u:object_r:vendor_fp_prop:s0
 
-# Dirac
-persist.audio.dirac.       u:object_r:dirac_prop:s0
-
-# GPUboost
-persist.gpuboost.profile           u:object_r:gpuboost_prop:s0
-
-# CPUboost
-persist.cpuboost.profile           u:object_r:cpuboost_prop:s0
-
-# Spectrum
-persist.spectrum.profile                      u:object_r:spectrum_prop:s0
-
 # PowerHAL
 vendor.powerhal.audio      u:object_r:power_prop:s0
 vendor.powerhal.init       u:object_r:power_prop:s0

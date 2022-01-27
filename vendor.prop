@@ -7,7 +7,6 @@ audio.offload.min.duration.secs=30
 audio.offload.video=true
 persist.vendor.audio.hw.binder.size_kbyte=1024
 persist.vendor.audio.speaker.prot.enable=false
-ro.audio.soundfx.dirac=true
 ro.vendor.audio.sdk.ssr=false
 vendor.audio.dolby.ds2.enabled=false
 vendor.audio.dolby.ds2.hardbypass=false
@@ -184,9 +183,6 @@ service.qti.ims.enabled=1
 telephony.lteOnCdmaDevice=1
 vendor.rild.libpath=/vendor/lib64/libril-qc-qmi-1.so
 vendor.service.qti.ims.enabled=1
-
-# Spectrum
-spectrum.support=1
 
 # SoC
 ro.soc.manufacturer=Qualcomm
