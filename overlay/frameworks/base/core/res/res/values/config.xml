@@ -553,12 +553,8 @@
          before setting power profiles on boot. -->
     <bool name="config_waitForMpctlOnBoot">true</bool>
 
-    <!-- Button backlight control. Possible values are:
-            0 - Not supported
-            1 - Supported, but only on/off mode
-            2 - Supported with variable brightness control
-    -->
-    <integer name="config_deviceSupportsButtonBrightnessControl">1</integer>
+    <!-- Button backlight -->
+    <bool name="config_button_brightness_support">true</bool>
 
     <!-- Smart charging -->
     <string name="config_SmartChargingSysfsNode" translatable="false">/sys/class/power_supply/battery/charging_enabled</string>
