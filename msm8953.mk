@@ -170,6 +170,8 @@ ifeq ($(TARGET_IS_LEGACY),true)
 PRODUCT_VENDOR_PROPERTIES += \
     ro.crypto.volume.contents_mode=aes-256-xts
 endif
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/flash_super_dummy.sh:install/bin/flash_super_dummy.sh
 
 # FM
 PRODUCT_PACKAGES += \
