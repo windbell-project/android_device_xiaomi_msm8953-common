@@ -94,6 +94,9 @@ DEVICE_MATRIX_FILE := $(COMMON_PATH)/compatibility_matrix.xml
 # HW crypto
 TARGET_HW_DISK_ENCRYPTION := true
 
+# HWUI
+HWUI_COMPILE_FOR_PERF := true
+
 # Init
 TARGET_INIT_VENDOR_LIB := //$(COMMON_PATH):libinit_msm8953
 TARGET_RECOVERY_DEVICE_MODULES := libinit_msm8953
