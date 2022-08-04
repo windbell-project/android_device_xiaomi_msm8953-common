@@ -5,7 +5,6 @@ audio.deep_buffer.media=true
 audio.offload.disable=false
 audio.offload.min.duration.secs=30
 audio.offload.video=true
-debug.stagefright.omx_default_rank.sw-audio=1
 persist.vendor.audio.hw.binder.size_kbyte=1024
 persist.vendor.audio.speaker.prot.enable=false
 ro.audio.soundfx.dirac=true
@@ -64,25 +63,21 @@ ro.charger.enable_suspend=true
 # CNE
 persist.vendor.cne.feature=1
 
-# DPM
-persist.vendor.dpm.feature=1
-persist.vendor.dpm.loglevel=0
-
 # Display
 debug.egl.hw=0
 debug.enable.sglscale=1
 debug.gralloc.enable_fb_ubwc=1
 debug.mdpcomp.logs=0
+debug.renderengine.backend=threaded
 debug.sf.enable_hwc_vds=1
 debug.sf.hw=0
-debug.sf.latch_unsignaled=1
 debug.sf.recomputecrop=0
 dev.pm.dyn_samplingrate=1
 persist.demo.hdmirotationlock=false
 persist.hwc.enable_vds=1
 persist.hwc.mdpcomp.enable=true
 ro.hardware.egl=adreno
-ro.hardware.vulkan=adreno
+ro.hardware.vulkan=msm8953
 ro.opengles.version=196610
 ro.qualcomm.cabl=2
 ro.surface_flinger.force_hwc_copy_for_virtual_displays=true
@@ -118,7 +113,6 @@ media.stagefright.audio.sink=280
 vendor.mm.enable.qcom_parser=1048575
 mm.enable.smoothstreaming=true
 mmp.enable.3g2=true
-vendor.audio.hw.aac.encoder=true
 vendor.vidc.dec.downscalar_height=1088
 vendor.vidc.dec.downscalar_width=1920
 vendor.vidc.disable.split.mode=1
@@ -166,6 +160,10 @@ service.qti.ims.enabled=1
 telephony.lteOnCdmaDevice=1
 vendor.rild.libpath=/vendor/lib64/libril-qc-qmi-1.so
 vendor.service.qti.ims.enabled=1
+
+# SoC
+ro.soc.manufacturer=Qualcomm
+ro.soc.model=SDM450
 
 # Time Services
 persist.timed.enable=true

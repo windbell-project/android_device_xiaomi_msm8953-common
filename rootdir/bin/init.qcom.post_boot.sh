@@ -235,22 +235,32 @@ function configure_zram_parameters() {
     # Zram disk - 75% for Go devices.
     # For 512MB Go device, size = 384MB, set same for Non-Go.
     # For 1GB Go device, size = 768MB, set same for Non-Go.
-    # For >=2GB Non-Go device, size = 1GB
+    # For 2GB Go device, size = 1536MB, set same for Non-Go.
+    # For >2GB Non-Go devices, size = 50% of RAM size. Limit the size to 4GB.
     # And enable lz4 zram compression for Go targets.
+
+    let RamSizeGB="( $MemTotal / 1048576 ) + 1"
+    diskSizeUnit=M
+    if [ $RamSizeGB -le 2 ]; then
+        let zRamSizeMB="( $RamSizeGB * 1024 ) * 3 / 4"
+    else
+        let zRamSizeMB="( $RamSizeGB * 1024 ) / 2"
+    fi
+
+    # use MB avoid 32 bit overflow
+    if [ $zRamSizeMB -gt 4096 ]; then
+        let zRamSizeMB=4096
+    fi
 
     if [ "$low_ram" == "true" ]; then
         echo lz4 > /sys/block/zram0/comp_algorithm
     fi
 
     if [ -f /sys/block/zram0/disksize ]; then
-        if [ $MemTotal -le 524288 ]; then
-            echo 402653184 > /sys/block/zram0/disksize
-        elif [ $MemTotal -le 1048576 ]; then
-            echo 805306368 > /sys/block/zram0/disksize
-        else
-            # Set Zram disk size=1GB for >=2GB Non-Go targets.
-            echo 1073741824 > /sys/block/zram0/disksize
+        if [ -f /sys/block/zram0/use_dedup ]; then
+            echo 1 > /sys/block/zram0/use_dedup
         fi
+        echo "$zRamSizeMB""$diskSizeUnit" > /sys/block/zram0/disksize
 
         # ZRAM may use more memory than it saves if SLAB_STORE_USER
         # debug option is enabled.
@@ -350,16 +360,18 @@ if [ "$ProductName" == "msmnile" ]; then
       echo 100 > /proc/sys/vm/swappiness
 else
     arch_type=`uname -m`
-    MemTotalStr=`cat /proc/meminfo | grep MemTotal`
-    MemTotal=${MemTotalStr:16:8}
 
     # Set parameters for 32-bit Go targets.
-    if [ $MemTotal -le 1048576 ] && [ "$low_ram" == "true" ]; then
+    if [ "$low_ram" == "true" ]; then
         # Disable KLMK, ALMK, PPR & Core Control for Go devices
         echo 0 > /sys/module/lowmemorykiller/parameters/enable_lmk
         echo 0 > /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk
         echo 0 > /sys/module/process_reclaim/parameters/enable_process_reclaim
         disable_core_ctl
+        # Enable oom_reaper for Go devices
+        if [ -f /proc/sys/vm/reap_mem_on_sigkill ]; then
+            echo 1 > /proc/sys/vm/reap_mem_on_sigkill
+        fi
     else
 
         # Read adj series and set adj threshold for PPR and ALMK.
@@ -461,15 +473,6 @@ function enable_memory_features()
         #Enable Delay Service Restart
         setprop ro.vendor.qti.am.reschedule_service true
     fi
-}
-
-function start_hbtp()
-{
-        # Start the Host based Touch processing but not in the power off mode.
-        bootmode=`getprop ro.bootmode`
-        if [ "charger" != $bootmode ]; then
-                start vendor.hbtp
-        fi
 }
 
 case "$target" in
@@ -814,26 +817,6 @@ case "$target" in
                 if [ -f /sys/devices/soc0/hw_platform ]; then
                     hw_platform=`cat /sys/devices/soc0/hw_platform`
                 fi
-                case "$soc_id" in
-                    "239")
-                    case "$hw_platform" in
-                        "Surf")
-                            case "$platform_subtype_id" in
-                                "1" | "2")
-                                    start_hbtp
-                                ;;
-                            esac
-                        ;;
-                        "MTP")
-                            case "$platform_subtype_id" in
-                                "3")
-                                    start_hbtp
-                                ;;
-                            esac
-                        ;;
-                    esac
-                    ;;
-                esac
             ;;
             "268" | "269" | "270" | "271")
                 echo 10 > /sys/class/net/rmnet0/queues/rx-0/rps_cpus
@@ -1660,28 +1643,6 @@ case "$target" in
         case "$soc_id" in
             "293" | "304" | "338" | "351")
 
-                # Start Host based Touch processing
-                case "$hw_platform" in
-                     "MTP" | "Surf" | "RCM" )
-                        #if this directory is present, it means that a
-                        #1200p panel is connected to the device.
-                        dir="/sys/bus/i2c/devices/3-0038"
-                        if [ ! -d "$dir" ]; then
-                              start_hbtp
-                        fi
-                        ;;
-                esac
-
-                if [ $soc_id -eq "338" ]; then
-                    case "$hw_platform" in
-                        "QRD" )
-                            if [ $platform_subtype_id -eq "1" ]; then
-                               start_hbtp
-                            fi
-                            ;;
-                    esac
-                fi
-
                 #init task load, restrict wakeups to preferred cluster
                 echo 15 > /proc/sys/kernel/sched_init_task_load
 
@@ -1818,13 +1779,6 @@ case "$target" in
         esac
         case "$soc_id" in
             "349" | "350")
-
-            # Start Host based Touch processing
-            case "$hw_platform" in
-                 "MTP" | "Surf" | "RCM" | "QRD" )
-                          start_hbtp
-                    ;;
-            esac
 
             for devfreq_gov in /sys/class/devfreq/qcom,mincpubw*/governor
             do
@@ -2003,21 +1957,6 @@ case "$target" in
         # Socid 386 = Pukeena
         case "$soc_id" in
            "303" | "307" | "308" | "309" | "320" | "386" )
-
-                  # Start Host based Touch processing
-                  case "$hw_platform" in
-                    "MTP" )
-			start_hbtp
-                        ;;
-                  esac
-
-                  case "$hw_platform" in
-                    "Surf" | "RCM" )
-			if [ $platform_subtype_id -ne "4" ]; then
-			    start_hbtp
-		        fi
-                        ;;
-                  esac
                 # Apply Scheduler and Governor settings for 8917 / 8920
 
                 echo 20000000 > /proc/sys/kernel/sched_ravg_window
@@ -2095,13 +2034,6 @@ case "$target" in
 
         case "$soc_id" in
              "294" | "295" | "313" )
-
-                  # Start Host based Touch processing
-                  case "$hw_platform" in
-                    "MTP" | "Surf" | "RCM" )
-                        start_hbtp
-                        ;;
-                  esac
 
                 # Apply Scheduler and Governor settings for 8937/8940
 
@@ -2197,13 +2129,6 @@ case "$target" in
 
         case "$soc_id" in
              "354" | "364" | "353" | "363" )
-
-                # Start Host based Touch processing
-                case "$hw_platform" in
-                    "MTP" | "Surf" | "RCM" | "QRD" )
-                    start_hbtp
-                ;;
-                esac
 
                 # Apply settings for sdm429/sda429/sdm439/sda439
 
@@ -2341,18 +2266,6 @@ case "$target" in
                 esac
             ;;
         esac
-
-        case "$soc_id" in
-             "386" )
-
-                # Start Host based Touch processing
-                case "$hw_platform" in
-                    "QRD" )
-                    start_hbtp
-                ;;
-                esac
-	    ;;
-	esac
     ;;
 esac
 
@@ -2522,24 +2435,11 @@ case "$target" in
             # Start cdsprpcd only for sdm660 and disable for sdm630
             start vendor.cdsprpcd
 
-            # Start Host based Touch processing
-                case "$hw_platform" in
-                        "MTP" | "Surf" | "RCM" | "QRD" )
-                        start_hbtp
-                        ;;
-                esac
             ;;
         esac
         #Apply settings for sdm630 and Tahaa
         case "$soc_id" in
             "318" | "327" | "385" )
-
-            # Start Host based Touch processing
-            case "$hw_platform" in
-                "MTP" | "Surf" | "RCM" | "QRD" )
-                start_hbtp
-                ;;
-            esac
 
             # Setting b.L scheduler parameters
             echo 85 > /proc/sys/kernel/sched_upmigrate
@@ -2719,13 +2619,6 @@ case "$target" in
 
         case "$soc_id" in
             "336" | "337" | "347" | "360" | "393" )
-
-            # Start Host based Touch processing
-            case "$hw_platform" in
-              "MTP" | "Surf" | "RCM" | "QRD" | "HDK" )
-                  start_hbtp
-                  ;;
-            esac
 
       # Core control parameters on silver
       echo 0 0 0 0 1 1 > /sys/devices/system/cpu/cpu0/core_ctl/not_preferred
@@ -3099,18 +2992,6 @@ case "$target" in
 
         case "$soc_id" in
             "347" )
-
-            # Start Host based Touch processing
-            case "$hw_platform" in
-              "Surf" | "RCM" | "QRD" )
-                  start_hbtp
-                  ;;
-              "MTP" )
-                  if [ $platform_subtype_id != 5 ]; then
-                      start_hbtp
-                  fi
-                  ;;
-            esac
 
       # Core control parameters on silver
       echo 0 0 0 0 1 1 > /sys/devices/system/cpu/cpu0/core_ctl/not_preferred
@@ -3585,8 +3466,6 @@ case "$target" in
 		echo N > /sys/module/lpm_levels/parameters/sleep_disabled
 	fi
 	echo N > /sys/module/lpm_levels/parameters/sleep_disabled
-        # Starting io prefetcher service
-        start iop
 
         # Set Memory parameters
         configure_memory_parameters
@@ -3615,25 +3494,6 @@ case "$target" in
                 platform_subtype_id=`cat /sys/devices/soc0/platform_subtype_id`
         fi
 
-        case "$soc_id" in
-                "321" | "341")
-                # Start Host based Touch processing
-                case "$hw_platform" in
-                    "QRD" )
-                            case "$platform_subtype_id" in
-                                   "32") #QVR845 do nothing
-                                     ;;
-                                   *)
-                                         start_hbtp
-                                     ;;
-                            esac
-                     ;;
-                    *)
-                          start_hbtp
-                     ;;
-                esac
-         ;;
-        esac
 	# Core control parameters
 	echo 2 > /sys/devices/system/cpu/cpu4/core_ctl/min_cpus
 	echo 60 > /sys/devices/system/cpu/cpu4/core_ctl/busy_up_thres
@@ -3923,17 +3783,6 @@ case "$target" in
         platform_subtype_id=`cat /sys/devices/soc0/platform_subtype_id`
     fi
 
-    case "$hw_platform" in
-        "MTP" | "Surf" | "RCM" )
-            # Start Host based Touch processing
-            case "$platform_subtype_id" in
-                "0" | "1")
-                    start_hbtp
-                    ;;
-            esac
-        ;;
-    esac
-
     echo 0 > /sys/module/lpm_levels/parameters/sleep_disabled
     configure_memory_parameters
     ;;
@@ -3961,7 +3810,6 @@ case "$target" in
 	echo 5 > /proc/sys/kernel/sched_spill_nr_run
 	echo 1 > /proc/sys/kernel/sched_restrict_cluster_spill
         echo 1 > /proc/sys/kernel/sched_prefer_sync_wakee_to_waker
-	start iop
 
         # disable thermal bcl hotplug to switch governor
         echo 0 > /sys/module/msm_thermal/core_control/enabled
@@ -4051,27 +3899,6 @@ case "$target" in
 	if [ -f /sys/devices/soc0/platform_subtype_id ]; then
 		platform_subtype_id=`cat /sys/devices/soc0/platform_subtype_id`
 	fi
-
-	case "$soc_id" in
-		"292") #msm8998 apq8098_latv
-		# Start Host based Touch processing
-		case "$hw_platform" in
-		"QRD")
-			case "$platform_subtype_id" in
-				"0")
-					start_hbtp
-					;;
-				"16")
-					if [ $platform_major_version -lt 6 ]; then
-						start_hbtp
-					fi
-					;;
-			esac
-
-			;;
-		esac
-	    ;;
-	esac
 
 	echo N > /sys/module/lpm_levels/system/pwr/cpu0/ret/idle_enabled
 	echo N > /sys/module/lpm_levels/system/pwr/cpu1/ret/idle_enabled
