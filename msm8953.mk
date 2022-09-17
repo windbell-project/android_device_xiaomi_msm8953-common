@@ -128,7 +128,8 @@ PRODUCT_PACKAGES += \
     android.hardware.graphics.allocator@2.0-impl \
     android.hardware.graphics.allocator@2.0-service \
     android.hardware.graphics.mapper@2.0-impl-2.1 \
-	gralloc.msm8953
+    libgralloc.system.qti \
+    gralloc.msm8953
 
 PRODUCT_PACKAGES += \
     android.hardware.graphics.composer@2.1-impl \
@@ -146,6 +147,12 @@ PRODUCT_PACKAGES += \
     libqdMetaData.system \
     libgenlock \
     libtinyxml
+
+PRODUCT_PACKAGES += \
+    vendor.display.config@2.0 \
+    vendor.display.config@1.0.vendor \
+    vendor.qti.hardware.display.allocator-service \
+    vendor.qti.hardware.display.mapper@2.0.vendor
 
 # DPM
 PRODUCT_PACKAGES += \
