@@ -160,6 +160,11 @@ PRODUCT_PACKAGES += \
     android.hardware.drm-service.clearkey \
     android.hardware.drm@1.4.vendor
 
+# Dynamic Partitions
+PRODUCT_BUILD_SUPER_PARTITION := false
+PRODUCT_USE_DYNAMIC_PARTITIONS := true
+PRODUCT_RETROFIT_DYNAMIC_PARTITIONS := true
+
 # Encryption
 ifeq ($(TARGET_IS_LEGACY),true)
 PRODUCT_VENDOR_PROPERTIES += \
@@ -307,6 +312,7 @@ PRODUCT_PACKAGES += \
 
 # Ramdisk
 PRODUCT_PACKAGES += \
+    fstab.qcom_ramdisk \
     fstab.qcom \
     init.msm.usb.configfs.rc \
     init.qcom.rc \
