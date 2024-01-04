@@ -148,7 +148,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     libdisplayconfig \
-    libqdMetaData.system \
     libtinyxml
 
 # DPM
